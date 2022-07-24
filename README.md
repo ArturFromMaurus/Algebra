@@ -31,11 +31,11 @@ Testid järgnevatel teemadel:
 2. Hulkliikme tegurdamine
 3. Hulkliikmete korrutamine (suvalised hulkliikmed, ruutude vahe valem, Kaksliikme ruut plussiga ja miinusega, kaksliikme kuup, kuupide summa ning vahe valemid)
 
-#Algebralised murrud.
+# Algebralised murrud.
 
-## Taandamine,Tegurdamine
-## Ühenimeliste murdude liitmine/lahutamine
-## Erinimeliste murdude liitmine/lahutamine
-## Murdude korrutamine (koos astendamisega)
-## Murdude jagamine
+ Taandamine,Tegurdamine
+ Ühenimeliste murdude liitmine/lahutamine
+ Erinimeliste murdude liitmine/lahutamine
+ Murdude korrutamine (koos astendamisega)
+ Murdude jagamine
 
