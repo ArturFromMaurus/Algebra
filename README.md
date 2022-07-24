@@ -33,9 +33,9 @@ Testid järgnevatel teemadel:
 
 # Algebralised murrud.
 
- Taandamine,Tegurdamine
- Ühenimeliste murdude liitmine/lahutamine
- Erinimeliste murdude liitmine/lahutamine
- Murdude korrutamine (koos astendamisega)
- Murdude jagamine
+- Taandamine,Tegurdamine
+- Ühenimeliste murdude liitmine/lahutamine
+- Erinimeliste murdude liitmine/lahutamine
+- Murdude korrutamine (koos astendamisega)
+- Murdude jagamine
 
