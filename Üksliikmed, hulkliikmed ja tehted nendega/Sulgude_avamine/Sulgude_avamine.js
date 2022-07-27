@@ -23,7 +23,7 @@ function setup() {
   document.getElementById("lihtsam").style.visibility = "hidden";
   document.getElementById("latex").style.visibility = "hidden";
     stroke(100,180,200);
-    strokeWeight(4);
+    strokeWeight(3);
     let fov= PI/3;
     let cameraZ=(height/2.0)/tan(fov/2.0);
     perspective(fov, width/height, cameraZ/10000.0, cameraZ*10000);
