@@ -349,10 +349,10 @@ function Ylesanne(){
      shuffled_array_string=shuffled_array_string.substring(1)
    } 
   
-      console.log("Liige X: "+str(esimese_liikme_vastus));
-      console.log("Liige Y: "+str(teise_liikme_vastus));
-      console.log("Liige N: "+str(kolmanda_liikme_vastus));
-      console.log(shuffled_array_string);
+//       console.log("Liige X: "+str(esimese_liikme_vastus));
+//       console.log("Liige Y: "+str(teise_liikme_vastus));
+//       console.log("Liige N: "+str(kolmanda_liikme_vastus));
+//       console.log(shuffled_array_string);
    tex_string=shuffled_array_string+"=";
    katex.render( tex_string, tex_võrrand.elt);
    yl_text.html("Koonda sarnased liikmed ja vii normaalkujule.");
@@ -384,9 +384,9 @@ function write_texts(){
 
 function kontroll(){
   sisu=document.getElementById("lihtsam").textContent;
-  console.log("KONTROLL: ")
-console.log("MQ sisu: ", sisu);
-  console.log("Vastus võrdlemiseks: ", vastus_kontrollimiseks)
+//   console.log("KONTROLL: ")
+// console.log("MQ sisu: ", sisu);
+//   console.log("Vastus võrdlemiseks: ", vastus_kontrollimiseks)
   
   
            if (str(sisu) == vastus_kontrollimiseks ){
