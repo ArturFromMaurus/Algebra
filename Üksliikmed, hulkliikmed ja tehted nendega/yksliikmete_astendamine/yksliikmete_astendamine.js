@@ -23,7 +23,7 @@ function setup() {
   document.getElementById("lihtsam").style.visibility = "hidden";
   document.getElementById("latex").style.visibility = "hidden";
     stroke(100,180,200);
-    strokeWeight(4);
+    strokeWeight(3);
     let fov= PI/3;
     let cameraZ=(height/2.0)/tan(fov/2.0);
     perspective(fov, width/height, cameraZ/10000.0, cameraZ*10000);
@@ -157,7 +157,7 @@ function Ylesanne(){
   }
   
   
-   console.log(antav_ülesanne)
+//    console.log(antav_ülesanne)
     // console.log(vastus_kontrolliks)
    tex_string=antav_ülesanne+"=";
    katex.render( tex_string, tex_võrrand.elt);
@@ -189,9 +189,9 @@ function write_texts(){
 
 function kontroll(){
   sisu=document.getElementById("lihtsam").textContent;
-  console.log("KONTROLL: ")
-console.log("MQ sisu: ", sisu);
-  console.log("Vastus võrdlemiseks: ", vastus_kontrolliks)
+//   console.log("KONTROLL: ")
+// console.log("MQ sisu: ", sisu);
+//   console.log("Vastus võrdlemiseks: ", vastus_kontrolliks)
   
            if (str(sisu) == vastus_kontrolliks && str(sisu).length>0){
               tulemus.html("Õige!");
