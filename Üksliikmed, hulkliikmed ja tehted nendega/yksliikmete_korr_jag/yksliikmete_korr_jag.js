@@ -23,7 +23,7 @@ function setup() {
   document.getElementById("lihtsam").style.visibility = "hidden";
   document.getElementById("latex").style.visibility = "hidden";
     stroke(100,180,200);
-    strokeWeight(4);
+    strokeWeight(3);
     let fov= PI/3;
     let cameraZ=(height/2.0)/tan(fov/2.0);
     perspective(fov, width/height, cameraZ/10000.0, cameraZ*10000);
@@ -135,7 +135,7 @@ function Ylesanne(){
   asteY2=int(random(-35,35));
   // astmed=[[asteX1,asteX2],[asteY1,asteY2]];
   
-  console.log(asteX1,asteX2,asteY1,asteY2)
+//   console.log(asteX1,asteX2,asteY1,asteY2)
   
   liikme_tähed1=["","x","y","x^{"+str(asteX1)+"}","y^{"+str(asteY1)+"}","x^{"+str(asteX1)+"}y^{"+str(asteY1)+"}"];
   liikme_tähed2=["","x","y","x^{"+str(asteX2)+"}","y^{"+str(asteY2)+"}","x^{"+str(asteX2)+"}y^{"+str(asteY2)+"}"];
@@ -150,7 +150,7 @@ function Ylesanne(){
     }
     antav_ülesanne=symbolic_esimene +"\\cdot"+symbolic_teine;
    
-    console.log(tähed1_index,tähed2_index)
+//     console.log(tähed1_index,tähed2_index)
    
     // Nüüd, et saada string, millega vastust võrrelda, tuleb kirjutada 36 tingimust.
     if (tähed1_index==0 && tähed2_index==0){
@@ -237,7 +237,7 @@ function Ylesanne(){
     }
 
     antav_ülesanne=symbolic_esimene +":"+symbolic_teine;
-    console.log(tähed1_index,tähed2_index);
+//     console.log(tähed1_index,tähed2_index);
     
     for (i=20; i>=0;i=i-1){
       if (arv1%i==0 && arv2%i==0){
@@ -388,7 +388,7 @@ function Ylesanne(){
     
   }
   
-   console.log(antav_ülesanne)
+//    console.log(antav_ülesanne)
     // console.log(vastus_kontrolliks)
    tex_string=antav_ülesanne+"=";
    katex.render( tex_string, tex_võrrand.elt);
@@ -420,9 +420,9 @@ function write_texts(){
 
 function kontroll(){
   sisu=document.getElementById("lihtsam").textContent;
-  console.log("KONTROLL: ")
-console.log("MQ sisu: ", sisu);
-  console.log("Vastus võrdlemiseks: ", vastus_kontrolliks)
+//   console.log("KONTROLL: ")
+// console.log("MQ sisu: ", sisu);
+//   console.log("Vastus võrdlemiseks: ", vastus_kontrolliks)
   
            if (str(sisu) == vastus_kontrolliks && str(sisu).length>0){
               tulemus.html("Õige!");
