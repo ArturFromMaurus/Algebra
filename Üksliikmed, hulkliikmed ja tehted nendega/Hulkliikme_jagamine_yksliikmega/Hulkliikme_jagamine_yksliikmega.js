@@ -134,6 +134,11 @@ function Reset(){
 
 
 function Ylesanne(){
+  arv1=0;
+  arv2=0;
+  arv3=0;
+  arv3_tagavara=0;
+  
   asteX1=0
   asteX2=0
   asteX3=0
@@ -151,11 +156,12 @@ function Ylesanne(){
   mudel=["vasakul","paremal"];
 
   mudeli_valik=random(mudel);
-  
-  arv1=int(random(-20,20));
-  arv2=int(random(-20,20));
-  arv3=int(random(-20,20));
-  arv3_tagavara=arv3;
+  while (arv1==0 || arv2==0 || arv3==0 || arv3_tagavara==0){
+    arv1=int(random(-20,20));
+    arv2=int(random(-20,20));
+    arv3=int(random(-20,20));
+    arv3_tagavara=arv3;
+  }
   
   arvuline_vastuse_massiiv=[arv1,arv2, arv3];
   laiendaja=int(random(1,10));
@@ -163,16 +169,16 @@ function Ylesanne(){
   arv2_laiendatud=arv2*laiendaja;
   arv3_laiendatud=arv3*laiendaja;
   
-  while (asteX1==0 || asteX2==0 || asteX3==0 || asteY1==0 || asteY2==0 || asteY3==0 || asteZ1==0 || asteZ2==0 || asteZ3==0){
-  asteX1=int(random(-35,35));
-  asteX2=int(random(-35,35));
-  asteX3=int(random(-35,35));
-  asteY1=int(random(-35,35));
-  asteY2=int(random(-35,35));
-  asteY3=int(random(-35,35));
-  asteZ1=int(random(-35,35));
-  asteZ2=int(random(-35,35));
-  asteZ3=int(random(-35,35));
+  while (asteX1==0 || asteX2==0 || asteX3==0 || asteY1==0 || asteY2==0 || asteY3==0 || asteZ1==0 || asteZ2==0 || asteZ3==0 || asteX1==1 || asteX2==1 || asteX3==1 || asteY1==1 || asteY2==1 || asteY3==1 || asteZ1==1 || asteZ2==1 || asteZ3==1){
+  asteX1=int(random(-10,10));
+  asteX2=int(random(-10,10));
+  asteX3=int(random(-10,10));
+  asteY1=int(random(-10,10));
+  asteY2=int(random(-10,10));
+  asteY3=int(random(-10,10));
+  asteZ1=int(random(-10,10));
+  asteZ2=int(random(-10,10));
+  asteZ3=int(random(-10,10));
   }
   // astmed=[[asteX1,asteX2],[asteY1,asteY2]];
   
@@ -265,7 +271,7 @@ function Ylesanne(){
     }
     
     
-    console.log("Liige 3, 1 ja 2 vastavalt: ", liige_3, liige_1, liige_2);
+    // console.log("Liige 3, 1 ja 2 vastavalt: ", liige_3, liige_1, liige_2);
     antav_ülesanne=liige_3+":("+liige_1+liige_2+")";
     // Nüüd, et saada string, millega vastust võrrelda, tuleb kirjutada välja kõik võimalikud tingimused.
     
@@ -339,7 +345,7 @@ function Ylesanne(){
         esimese_liikme_vastus4 = märk_31+"("+str(abs(arv3))+"*x^"+str(asteX3)+")/("+ str(abs(arv1))+"*y^"+str(-asteY3)+")";
         esimese_liikme_vastus5 = märk_31+"("+str(abs(arv3))+"*y^"+str(asteY3)+")/("+ str(abs(arv1))+"*x^"+str(-asteX3)+")";
         // if (abs(arv3)==1){
-        //   esimese_liikme_vastus1 = märk_31+"(x^"+str(asteX3)+"*y^"+str(asteY3)+")/("+ str(abs(arv1))+")";
+        // 	esimese_liikme_vastus1 = märk_31+"(x^"+str(asteX3)+"*y^"+str(asteY3)+")/("+ str(abs(arv1))+")";
         //     esimese_liikme_vastus2 = märk_31+konstant_1 +"*x^"+str(asteX3)+"*y^"+str(asteY3);
         //     esimese_liikme_vastus3 = märk_31+"("+"1"+")/("+ str(abs(arv1))+"*x^"+str(-asteX3)+"*y^"+str(-asteY3)+")"      
         //     esimese_liikme_vastus4 = märk_31+"(x^"+str(asteX3)+")/("+ str(abs(arv1))+"*y^"+str(-asteY3)+")";
@@ -726,7 +732,7 @@ function Ylesanne(){
     // console.log(esimese_liikme_vastus4)
     // console.log(esimese_liikme_vastus5)
     esimeste_liikmete_alternatiivid=[esimese_liikme_vastus1,esimese_liikme_vastus2,esimese_liikme_vastus3,esimese_liikme_vastus4,esimese_liikme_vastus5,esimese_liikme_vastus6,esimese_liikme_vastus7,esimese_liikme_vastus8,esimese_liikme_vastus9]
-    console.log(esimeste_liikmete_alternatiivid)
+    // console.log(esimeste_liikmete_alternatiivid)
     
     
     
@@ -803,7 +809,7 @@ function Ylesanne(){
         teise_liikme_vastus4 = märk_32+"("+str(abs(arv3_tagavara))+"*x^"+str(asteX3)+")/("+ str(abs(arv2))+"*y^"+str(-asteY3)+")";
         teise_liikme_vastus5 = märk_32+"("+str(abs(arv3_tagavara))+"*y^"+str(asteY3)+")/("+ str(abs(arv2))+"*x^"+str(-asteX3)+")";
         // if (abs(arv3_tagavara)==1){
-        //   teise_liikme_vastus1 = märk_32+"(x^"+str(asteX3)+"*y^"+str(asteY3)+")/("+ str(abs(arv2))+")";
+        // 	teise_liikme_vastus1 = märk_32+"(x^"+str(asteX3)+"*y^"+str(asteY3)+")/("+ str(abs(arv2))+")";
         //     teise_liikme_vastus2 = märk_32+konstant_2 +"*x^"+str(asteX3)+"*y^"+str(asteY3);
         //     teise_liikme_vastus3 = märk_32+"("+"1"+")/("+ str(abs(arv2))+"*x^"+str(-asteX3)+"*y^"+str(-asteY3)+")"      
         //     teise_liikme_vastus4 = märk_32+"(x^"+str(asteX3)+")/("+ str(abs(arv2))+"*y^"+str(-asteY3)+")";
@@ -1190,7 +1196,7 @@ function Ylesanne(){
     // console.log(teise_liikme_vastus4)
     // console.log(teise_liikme_vastus5)
     teiste_liikmete_alternatiivid=[teise_liikme_vastus1,teise_liikme_vastus2,teise_liikme_vastus3,teise_liikme_vastus4,teise_liikme_vastus5,teise_liikme_vastus6,teise_liikme_vastus7,teise_liikme_vastus8,teise_liikme_vastus9]
-    console.log(teiste_liikmete_alternatiivid)
+    // console.log(teiste_liikmete_alternatiivid)
     
     võimalikud_vastused=[];
     for (i=0; i<esimeste_liikmete_alternatiivid.length; i++){
@@ -1244,7 +1250,7 @@ function Ylesanne(){
       liige_3="("+liige_3+")";
     }
     
-    console.log("Liige 3, 1 ja 2 vastavalt: ", liige_3, liige_1, liige_2);
+    // console.log("Liige 3, 1 ja 2 vastavalt: ", liige_3, liige_1, liige_2);
     antav_ülesanne="("+liige_1+liige_2+"):"+liige_3;
 
     // Nüüd, et saada string, millega vastust võrrelda, tuleb kirjutada 72 tingimust. [ESIMESE LIIKME JAOKS VASTUSES!!!!!!]
@@ -1315,7 +1321,7 @@ function Ylesanne(){
         esimese_liikme_vastus4 = märk_31+"("+ str(abs(arv1))+"*y^"+str(-asteY3)+")/("+str(abs(arv3))+"*x^"+str(asteX3)+")";
         esimese_liikme_vastus5 = märk_31+"("+ str(abs(arv1))+"*x^"+str(-asteX3)+")/("+str(abs(arv3))+"*y^"+str(asteY3)+")";
         // if (abs(arv3)==1){
-        //   esimese_liikme_vastus1 = märk_31+"(x^"+str(asteX3)+"*y^"+str(asteY3)+")/("+ str(abs(arv1))+")";
+        // 	esimese_liikme_vastus1 = märk_31+"(x^"+str(asteX3)+"*y^"+str(asteY3)+")/("+ str(abs(arv1))+")";
         //     esimese_liikme_vastus2 = märk_31+konstant_1 +"*x^"+str(asteX3)+"*y^"+str(asteY3);
         //     esimese_liikme_vastus3 = märk_31+"("+"1"+")/("+ str(abs(arv1))+"*x^"+str(-asteX3)+"*y^"+str(-asteY3)+")"      
         //     esimese_liikme_vastus4 = märk_31+"(x^"+str(asteX3)+")/("+ str(abs(arv1))+"*y^"+str(-asteY3)+")";
@@ -1702,7 +1708,7 @@ function Ylesanne(){
     // console.log(esimese_liikme_vastus4)
     // console.log(esimese_liikme_vastus5)
     esimeste_liikmete_alternatiivid=[esimese_liikme_vastus1,esimese_liikme_vastus2,esimese_liikme_vastus3,esimese_liikme_vastus4,esimese_liikme_vastus5,esimese_liikme_vastus6,esimese_liikme_vastus7,esimese_liikme_vastus8,esimese_liikme_vastus9]
-    console.log(esimeste_liikmete_alternatiivid)
+    // console.log(esimeste_liikmete_alternatiivid);
     
     
     
@@ -1780,7 +1786,7 @@ function Ylesanne(){
         teise_liikme_vastus4 = märk_32+"("+ str(abs(arv2))+"*y^"+str(-asteY3)+")/("+str(abs(arv3_tagavara))+"*x^"+str(asteX3)+")";
         teise_liikme_vastus5 = märk_32+"("+ str(abs(arv2))+"*x^"+str(-asteX3)+")/("+str(abs(arv3_tagavara))+"*y^"+str(asteY3)+")";
         // if (abs(arv3_tagavara)==1){
-        //   teise_liikme_vastus1 = märk_32+"(x^"+str(asteX3)+"*y^"+str(asteY3)+")/("+ str(abs(arv2))+")";
+        // 	teise_liikme_vastus1 = märk_32+"(x^"+str(asteX3)+"*y^"+str(asteY3)+")/("+ str(abs(arv2))+")";
         //     teise_liikme_vastus2 = märk_32+konstant_2 +"*x^"+str(asteX3)+"*y^"+str(asteY3);
         //     teise_liikme_vastus3 = märk_32+"("+"1"+")/("+ str(abs(arv2))+"*x^"+str(-asteX3)+"*y^"+str(-asteY3)+")"      
         //     teise_liikme_vastus4 = märk_32+"(x^"+str(asteX3)+")/("+ str(abs(arv2))+"*y^"+str(-asteY3)+")";
@@ -2167,7 +2173,7 @@ function Ylesanne(){
     // console.log(teise_liikme_vastus4)
     // console.log(teise_liikme_vastus5)
     teiste_liikmete_alternatiivid=[teise_liikme_vastus1,teise_liikme_vastus2,teise_liikme_vastus3,teise_liikme_vastus4,teise_liikme_vastus5,teise_liikme_vastus6,teise_liikme_vastus7,teise_liikme_vastus8,teise_liikme_vastus9]
-    console.log(teiste_liikmete_alternatiivid)
+    // console.log(teiste_liikmete_alternatiivid)
     
     
     
@@ -2194,7 +2200,7 @@ function Ylesanne(){
     
     
  }
-     console.log(antav_ülesanne)
+     // console.log(antav_ülesanne)
     // console.log(vastus_kontrolliks)
      tex_string=antav_ülesanne+"=";
      katex.render( tex_string, tex_võrrand.elt);
@@ -2226,8 +2232,8 @@ function write_texts(){
 
 function kontroll(){
   sisu=document.getElementById("lihtsam").textContent;
-  console.log("KONTROLL: ");
-  console.log("MQ sisu: ", sisu);
+  // console.log("KONTROLL: ")
+  // console.log("MQ sisu: ", sisu);
   // console.log("Vastus võrdlemiseks: ", vastus_kontrolliks)
   for (i=0; i<vastused.length;i++){
            if (str(sisu) == vastused[i] && str(sisu).length>0){
@@ -2235,7 +2241,7 @@ function kontroll(){
               tulemus.style("color","green");
               KONTROLL_NUPP.attribute("disabled","");
               õige_vastus=õige_vastus+1;
-             break;
+             break
             } else {
               tulemus.html("Valesti koondatud!");
               tulemus.style("color","red");
@@ -2272,23 +2278,23 @@ function Lõpp(){
 
 
 function round_0(v) {
-    return (Math.sign(v) * Math.round(Math.abs(v)) );
+    return (Math.sign(v) * Math.round(Math.abs(v)) )
 }
 
 function round_1(v) {
-    return (Math.sign(v) * Math.round(Math.abs(v)*10)/10 );
+    return (Math.sign(v) * Math.round(Math.abs(v)*10)/10 )
 }
 
 function round_2(v) {
-    return (Math.sign(v) * Math.round(Math.abs(v)*100)/100 );
+    return (Math.sign(v) * Math.round(Math.abs(v)*100)/100 )
 }
 
 function round_3(v) {
-    return (Math.sign(v) * Math.round(Math.abs(v)*1000)/1000 );
+    return (Math.sign(v) * Math.round(Math.abs(v)*1000)/1000 )
 }
 
 function round_4(v) {
-    return (Math.sign(v) * Math.round(Math.abs(v)*10000)/10000 );
+    return (Math.sign(v) * Math.round(Math.abs(v)*10000)/10000 )
 }
 
 function liikmete_SUM(massiiv){
@@ -2296,14 +2302,14 @@ function liikmete_SUM(massiiv){
   for (i=0; i<=massiiv.length-1; i++){
     temp_summa=temp_summa+massiiv[i];
   }
-    return temp_summa;
+    return temp_summa
 }
 
 
 
 
 // for WEBGL end screen
-empty_vec=[];
+empty_vec=[]
 function new_step(){
   
     direction=random(["up","down","left","right","forward","back"]);
