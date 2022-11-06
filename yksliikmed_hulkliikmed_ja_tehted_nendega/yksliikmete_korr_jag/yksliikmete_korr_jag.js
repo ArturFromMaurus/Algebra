@@ -368,7 +368,7 @@ function Ylesanne(){
         vastus_kontrolliks = konstant+"*x^"+str(asteX1-asteX2);
       }
       if ((asteY1-asteY2==0) && (asteX1-asteX2==0)){
-        vastus_kontrolliks = konstant<
+        vastus_kontrolliks = konstant;
       }
     }
     
