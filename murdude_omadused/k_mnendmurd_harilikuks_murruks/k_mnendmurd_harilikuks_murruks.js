@@ -239,6 +239,8 @@ function Lõpp(){
   RESET_NUPP.attribute("disabled","");
   LÕPETA_NUPP.attribute("disabled","");
   
+  infoNupp.remove();
+
   tex_võrrand.remove();
   lugeja.remove();
   nimetaja.remove();
