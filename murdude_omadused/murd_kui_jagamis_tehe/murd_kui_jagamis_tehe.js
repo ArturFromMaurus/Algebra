@@ -4,6 +4,68 @@ var ylesannete_loendur=0;
 var oige_vastus=0;
 var lopetamise_tingimus=false;
 
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+var tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(255, 255, 255, 255)";
+tooltip.style.color = "black";
+tooltip.style.padding = "10px";
+tooltip.style.position = "absolute";
+tooltip.style.display = "none";
+tooltip.style.zIndex="1";
+tooltip.style.border="solid 2px black";
+tooltip.style.width="540px"
+document.body.appendChild(tooltip);
+
+var regularText = document.createElement("div");
+regularText.innerHTML = "Murru väärtuse arvutamiseks tuleb jagada lugeja (ülemine arv) nimetajaga (alumine arv). Tuhandikeni ümardamiseks tuleb ümardada lõppvastus 3 kohta pärast koma.<br><br>";
+regularText.style.fontFamily="Computer Modern";
+regularText.style.fontSize="20px";
+tooltip.appendChild(regularText);
+
+KaTeX_EQ="\\text{Näiteks: } \\dfrac{52}{12}=4.333."
+var katexEquation = document.createElement("div");
+tooltip.appendChild(katexEquation);
+
+
+// Info nuppu funktsionaalsus
+var infoNupp = document.createElement("button");
+infoNupp.innerHTML = "i";
+infoNupp.style.position = "absolute";
+infoNupp.style.margin="20px";
+infoNupp.style.padding="5px 12px";
+infoNupp.style.fontSize="20px";
+infoNupp.style.fontWeight="bold";
+infoNupp.style.fontFamily="Hoefler Text";
+infoNupp.style.fontStyle="italic";
+infoNupp.style.background="transparent";
+infoNupp.style.border="solid 2px black";
+infoNupp.style.borderRadius="50%";
+infoNupp.style.zIndex="1";
+document.body.appendChild(infoNupp);
+
+infoNupp.addEventListener("mouseenter", function() {
+  tooltip.style.left = (infoNupp.offsetLeft + infoNupp.offsetWidth) + "px";
+  tooltip.style.top = (infoNupp.offsetTop + infoNupp.offsetHeight) + "px";
+  infoNupp.style.background="darkgrey"
+  tooltip.style.display = "block";
+});
+
+infoNupp.addEventListener("mouseleave", function() {
+  tooltip.style.display = "none";
+  infoNupp.style.background="transparent"
+});
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+
+
+
+
+
+
+
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
@@ -18,7 +80,10 @@ function setup() {
 }
 
 function draw() {
-  background(230,245,255);
+  clear();
+  background(251,253,255);
+  katex.render(KaTeX_EQ, katexEquation);
+
   yl_text.position(width/asukoha_nr,height/asukoha_nr);
   murru_vastus.position(width/asukoha_nr+60,height/asukoha_nr+89);
   tex_vorrand.position(width/asukoha_nr+0,height/asukoha_nr+80)
@@ -175,6 +240,8 @@ function Lopp(){
   RESET_NUPP.attribute("disabled","");
   LOPETA_NUPP.attribute("disabled","");
   
+  infoNupp.remove();
+
   tex_vorrand.remove();
   murru_vastus.remove();
   yl_text.remove();
