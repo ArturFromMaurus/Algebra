@@ -4,6 +4,63 @@ var ylesannete_loendur=0;
 var oige_vastus=0;
 var lopetamise_tingimus=false;
 
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+var tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(255, 255, 255, 255)";
+tooltip.style.color = "black";
+tooltip.style.padding = "10px";
+tooltip.style.position = "absolute";
+tooltip.style.display = "none";
+tooltip.style.zIndex="1";
+tooltip.style.border="solid 2px black";
+tooltip.style.width="540px"
+document.body.appendChild(tooltip);
+
+var regularText = document.createElement("div");
+regularText.innerHTML = "Vastust võib sisestada nii taandatud kui ka taandamata kujul.<br><br>Erinimeliste murdude liitmiseks ja lahutamiseks tuleb teisendada mõlema murru nimetajad ühesugusteks. Kõige kindlam viis selle jaoks, kuid mitte ainuke, on kasutada 'ristlaiendus' meetodit. Selle jaoks tuleb laiendada esimest murdu teise murru nimetajaga ning teist murdu esimese murru nimetajaga.<br><br>Näiteks.";
+regularText.style.fontFamily="Computer Modern";
+regularText.style.fontSize="20px";
+tooltip.appendChild(regularText);
+
+KaTeX_EQ="\\dfrac{5}{7}+\\dfrac{1}{3}=\\dfrac{5}{7}^{(3}+\\dfrac{1}{3}^{(7}=\\dfrac{5 \\cdot 3}{7 \\cdot 3} +\\dfrac{1 \\cdot 7}{3 \\cdot 7}=\\dfrac{15}{21}+\\dfrac{7}{21}=\\dfrac{22}{21}."
+var katexEquation = document.createElement("div");
+tooltip.appendChild(katexEquation);
+
+
+// Info nuppu funktsionaalsus
+var infoNupp = document.createElement("button");
+infoNupp.innerHTML = "i";
+infoNupp.style.position = "absolute";
+infoNupp.style.margin="20px";
+infoNupp.style.padding="5px 12px";
+infoNupp.style.fontSize="20px";
+infoNupp.style.fontWeight="bold";
+infoNupp.style.fontFamily="Hoefler Text";
+infoNupp.style.fontStyle="italic";
+infoNupp.style.background="transparent";
+infoNupp.style.border="solid 2px black";
+infoNupp.style.borderRadius="50%";
+infoNupp.style.zIndex="1";
+document.body.appendChild(infoNupp);
+
+infoNupp.addEventListener("mouseenter", function() {
+  tooltip.style.left = (infoNupp.offsetLeft + infoNupp.offsetWidth) + "px";
+  tooltip.style.top = (infoNupp.offsetTop + infoNupp.offsetHeight) + "px";
+  infoNupp.style.background="darkgrey"
+  tooltip.style.display = "block";
+});
+
+infoNupp.addEventListener("mouseleave", function() {
+  tooltip.style.display = "none";
+  infoNupp.style.background="transparent"
+});
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+
+
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
@@ -18,7 +75,9 @@ function setup() {
 }
 
 function draw() {
-  background(230,245,255);
+  clear();
+  background(251,253,255);
+  katex.render(KaTeX_EQ, katexEquation);
   yl_text.position(width/asukoha_nr,height/asukoha_nr);
   
   if(str(lugeja_murrus_1).length==1 && str(nimetaja_murrus_1).length==1 && str( lugeja_murrus_2).length==1 && str(nimetaja_murrus_2).length==1){
@@ -225,6 +284,7 @@ function Lopp(){
   LOPETA_NUPP.remove();
   KONTROLL_NUPP.remove();
   
+  infoNupp.remove();
   
   Tulemus=createP("Tulemus: "+str(round_2((oige_vastus/ylesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ylesannete_loendur)+"<br>Õigeid lahendusi: "+str(oige_vastus));
   Tulemus.position(width/4-100,height/4-100);
