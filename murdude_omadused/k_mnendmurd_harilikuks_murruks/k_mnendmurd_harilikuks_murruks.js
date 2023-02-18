@@ -1,8 +1,65 @@
 
 var asukoha_nr=10;
-var ylesannete_loendur=0;
-var oige_vastus=0;
-var lopetamise_tingimus=false;
+var ülesannete_loendur=0;
+var õige_vastus=0;
+var lõpetamise_tingimus=false;
+
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+var tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(255, 255, 255, 255)";
+tooltip.style.color = "black";
+tooltip.style.padding = "10px";
+tooltip.style.position = "absolute";
+tooltip.style.display = "none";
+tooltip.style.zIndex="1";
+tooltip.style.border="solid 2px black";
+tooltip.style.width="540px"
+document.body.appendChild(tooltip);
+
+var regularText = document.createElement("div");
+regularText.innerHTML = "Sisesta lugejasse ning nimetajasse sobivad täisarvud.<br>Õigeks loetakse nii taandatud kui ka taandamata kuju.<br><br>";
+regularText.style.fontFamily="Computer Modern";
+regularText.style.fontSize="20px";
+tooltip.appendChild(regularText);
+
+KaTeX_EQ="\\text{Näiteks: } 5.793= \\dfrac{5793}{1000}."
+var katexEquation = document.createElement("div");
+tooltip.appendChild(katexEquation);
+
+
+// Info nuppu funktsionaalsus
+var infoNupp = document.createElement("button");
+infoNupp.innerHTML = "i";
+infoNupp.style.position = "absolute";
+infoNupp.style.margin="20px";
+infoNupp.style.padding="5px 12px";
+infoNupp.style.fontSize="20px";
+infoNupp.style.fontWeight="bold";
+infoNupp.style.fontFamily="Hoefler Text";
+infoNupp.style.fontStyle="italic";
+infoNupp.style.background="transparent";
+infoNupp.style.border="solid 2px black";
+infoNupp.style.borderRadius="50%";
+infoNupp.style.zIndex="1";
+document.body.appendChild(infoNupp);
+
+infoNupp.addEventListener("mouseenter", function() {
+  tooltip.style.left = (infoNupp.offsetLeft + infoNupp.offsetWidth) + "px";
+  tooltip.style.top = (infoNupp.offsetTop + infoNupp.offsetHeight) + "px";
+  infoNupp.style.background="darkgrey"
+  tooltip.style.display = "block";
+});
+
+infoNupp.addEventListener("mouseleave", function() {
+  tooltip.style.display = "none";
+  infoNupp.style.background="transparent"
+});
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
@@ -10,7 +67,7 @@ function windowResized() {
 
 
 function setup() {
-  canvas=createCanvas(windowWidth, windowHeight);
+  canvas=createCanvas(windowWidth, 580);
   canvas.position(0,0);
   write_texts();
   Reset();
@@ -18,12 +75,15 @@ function setup() {
 }
 
 function draw() {
-  background(230,245,255);
+  clear();
+  background(251,253,255);
+  katex.render(KaTeX_EQ, katexEquation);
+  
   yl_text.position(width/asukoha_nr,height/asukoha_nr);
-  lugeja.position(width/asukoha_nr+92,height/asukoha_nr+41);
-  nimetaja.position(width/asukoha_nr+92,height/asukoha_nr+76);
-  tex_vorrand.position(width/asukoha_nr+81,height/asukoha_nr+57);
-  tulemus.position(width/asukoha_nr+165,height/asukoha_nr+65);
+  lugeja.position(width/asukoha_nr+78,height/asukoha_nr+41);
+  nimetaja.position(width/asukoha_nr+78,height/asukoha_nr+76);
+  tex_võrrand.position(width/asukoha_nr+71,height/asukoha_nr+60)
+  tulemus.position(width/asukoha_nr+155,height/asukoha_nr+65);
   
   KONTROLL_NUPP.position(width/asukoha_nr-110,height/asukoha_nr+150);
   KONTROLL_NUPP.mousePressed(kontroll);
@@ -32,10 +92,10 @@ function draw() {
   RESET_NUPP.mousePressed(Reset);
   
   
-  LOPETA_NUPP.mousePressed(Lopp);
-  LOPETA_NUPP.position(width/asukoha_nr+20,height/asukoha_nr+220);
+  LÕPETA_NUPP.mousePressed(Lõpp);
+  LÕPETA_NUPP.position(width/asukoha_nr+20,height/asukoha_nr+220);
   
-  if(lopetamise_tingimus==true){
+  if(lõpetamise_tingimus==true){
     
     push();
     fill(22, 56, 50);
@@ -70,13 +130,13 @@ function draw() {
 
 function Reset(){
   
-  if(ylesannete_loendur>0){
+  if(ülesannete_loendur>0){
     
     lugeja.remove();
     nimetaja.remove();
     KONTROLL_NUPP.remove();
     RESET_NUPP.remove();
-    LOPETA_NUPP.remove();
+    LÕPETA_NUPP.remove();
   }
   
   Ylesanne();
@@ -100,7 +160,7 @@ function Reset(){
   KONTROLL_NUPP.position(width/asukoha_nr-50,height/asukoha_nr+200);
   
   RESET_NUPP=createButton("Uus ülesanne");
-  RESET_NUPP.style('padding','10px 20px');
+   RESET_NUPP.style('padding','10px 20px');
   RESET_NUPP.style('background-color','#508bc3');
   RESET_NUPP.style('color','white');
   RESET_NUPP.style('border-radius','30px');
@@ -108,17 +168,17 @@ function Reset(){
   RESET_NUPP.style('margin-left','20px');
   RESET_NUPP.position(width/asukoha_nr+130,height/asukoha_nr+200);
   
-  LOPETA_NUPP=createButton("Lõpeta test");
-  LOPETA_NUPP.style('padding','10px 20px');
-  LOPETA_NUPP.style('background-color','LightSteelBlue');
-  LOPETA_NUPP.style('color','black');
-  LOPETA_NUPP.style('font-weight','bold');
-  LOPETA_NUPP.style('border-radius','30px');
-  LOPETA_NUPP.style('margin-top','30px');
-  LOPETA_NUPP.style('margin-left','80px');
-  LOPETA_NUPP.position(width/asukoha_nr+200,height/asukoha_nr+200);
+  LÕPETA_NUPP=createButton("Lõpeta test");
+  LÕPETA_NUPP.style('padding','10px 20px');
+  LÕPETA_NUPP.style('background-color','LightSteelBlue');
+  LÕPETA_NUPP.style('color','black');
+  LÕPETA_NUPP.style('font-weight','bold');
+  LÕPETA_NUPP.style('border-radius','30px');
+  LÕPETA_NUPP.style('margin-top','30px');
+  LÕPETA_NUPP.style('margin-left','80px');
+  LÕPETA_NUPP.position(width/asukoha_nr+200,height/asukoha_nr+200);
   
-  ylesannete_loendur=ylesannete_loendur+1;
+  ülesannete_loendur=ülesannete_loendur+1;
 }
 
 
@@ -130,27 +190,19 @@ function Ylesanne(){
 
 
 function write_texts(){
-  tex_vorrand=createDiv("");
-  tex_vorrand.position(width/asukoha_nr+63,height/asukoha_nr+50)
-  tex_vorrand.style("font-family","'Roboto',sans-serif");
-  tex_vorrand.style("font-size","1.25rem");
-  tex_vorrand.style("line-height","140%")
-  
+  tex_võrrand=createDiv("");
+  tex_võrrand.position(width/asukoha_nr+63,height/asukoha_nr+60)
   
   tex_string="\\dfrac{ \\hspace{10mm}   }{ \\hspace{10mm} }";
-  katex.render( tex_string, tex_vorrand.elt);
+  katex.render( tex_string, tex_võrrand.elt);
   
   yl_text=createDiv("");
-  yl_text.style("font-size","1.25rem");
+  yl_text.style("font-size","20px");
   yl_text.style("line-height","140%")
-  yl_text.style("font-family","'Roboto',sans-serif");
   yl_text.position(width/asukoha_nr,height/asukoha_nr);
   
   tulemus=createDiv("");
   tulemus.position(width/asukoha_nr+155,height/asukoha_nr+65);
-  tulemus.style("font-family","'Roboto',sans-serif");
-  tulemus.style("font-size","1.00rem");
-  tulemus.style("line-height","140%")
 }
 
 function kontroll(){
@@ -162,7 +214,7 @@ function kontroll(){
            if ( (lugeja.value()/nimetaja.value()) == kymnendmurd){
               tulemus.html("Õige!");
               tulemus.style("color","green");
-              oige_vastus=oige_vastus+1;
+              õige_vastus=õige_vastus+1;
             } else {
               tulemus.html("Vale!");
               tulemus.style("color","red");
@@ -181,30 +233,30 @@ function kontroll(){
 }
 
 
-function Lopp(){
+function Lõpp(){
   
   KONTROLL_NUPP.attribute("disabled","");
   RESET_NUPP.attribute("disabled","");
-  LOPETA_NUPP.attribute("disabled","");
+  LÕPETA_NUPP.attribute("disabled","");
   
-  tex_vorrand.remove();
+  tex_võrrand.remove();
   lugeja.remove();
   nimetaja.remove();
   yl_text.remove();
   tulemus.remove();
   
   RESET_NUPP.remove();
-  LOPETA_NUPP.remove();
+  LÕPETA_NUPP.remove();
   KONTROLL_NUPP.remove();
   
   
-  Tulemus=createP("Tulemus: "+str(round_2((oige_vastus/ylesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ylesannete_loendur)+"<br>Õigeid lahendusi: "+str(oige_vastus));
+  Tulemus=createP("Tulemus: "+str(round_2((õige_vastus/ülesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ülesannete_loendur)+"<br>Õigeid lahendusi: "+str(õige_vastus));
   Tulemus.position(width/4-100,height/4-100);
   Tulemus.style("font-size","28px");
   Tulemus.style("color",color(255,255,255));
   Tulemus.style("line-height","140%");
   
-  lopetamise_tingimus=true;
+  lõpetamise_tingimus=true;
 }
 
 
