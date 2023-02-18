@@ -4,6 +4,62 @@ var ülesannete_loendur=0;
 var õige_vastus=0;
 var lõpetamise_tingimus=false;
 
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+var tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(255, 255, 255, 255)";
+tooltip.style.color = "black";
+tooltip.style.padding = "10px";
+tooltip.style.position = "absolute";
+tooltip.style.display = "none";
+tooltip.style.zIndex="1";
+tooltip.style.border="solid 2px black";
+tooltip.style.width="540px"
+document.body.appendChild(tooltip);
+
+var regularText = document.createElement("div");
+regularText.innerHTML = "Et teisendada segaarvu liigmurruks, tuleb murru ees olev arv korrutada nimetajaga ning liita juurde lugejale.<br>NB! Vastused tuleb taandada!<br><br>";
+regularText.style.fontFamily="Computer Modern";
+regularText.style.fontSize="20px";
+tooltip.appendChild(regularText);
+
+KaTeX_EQ="\\text{Näiteks. } 2\\dfrac{5}{4}=\\dfrac{2 \\cdot 4 + 5}{4}= \\dfrac{13}{4}."
+var katexEquation = document.createElement("div");
+tooltip.appendChild(katexEquation);
+
+
+// Info nuppu funktsionaalsus
+var infoNupp = document.createElement("button");
+infoNupp.innerHTML = "i";
+infoNupp.style.position = "absolute";
+infoNupp.style.margin="20px";
+infoNupp.style.padding="5px 12px";
+infoNupp.style.fontSize="20px";
+infoNupp.style.fontWeight="bold";
+infoNupp.style.fontFamily="Hoefler Text";
+infoNupp.style.fontStyle="italic";
+infoNupp.style.background="transparent";
+infoNupp.style.border="solid 2px black";
+infoNupp.style.borderRadius="50%";
+infoNupp.style.zIndex="1";
+document.body.appendChild(infoNupp);
+
+infoNupp.addEventListener("mouseenter", function() {
+  tooltip.style.left = (infoNupp.offsetLeft + infoNupp.offsetWidth) + "px";
+  tooltip.style.top = (infoNupp.offsetTop + infoNupp.offsetHeight) + "px";
+  infoNupp.style.background="darkgrey"
+  tooltip.style.display = "block";
+});
+
+infoNupp.addEventListener("mouseleave", function() {
+  tooltip.style.display = "none";
+  infoNupp.style.background="transparent"
+});
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
@@ -18,7 +74,10 @@ function setup() {
 }
 
 function draw() {
-  background(230,245,255);
+  clear();
+  background(251,253,255);
+  katex.render(KaTeX_EQ, katexEquation);
+  
   yl_text.position(width/asukoha_nr,height/asukoha_nr);
   lugeja.position(width/asukoha_nr+58,height/asukoha_nr+50);
   nimetaja.position(width/asukoha_nr+58,height/asukoha_nr+85);
@@ -197,7 +256,7 @@ function Lõpp(){
   RESET_NUPP.remove();
   LÕPETA_NUPP.remove();
   KONTROLL_NUPP.remove();
-  
+  infoNupp.remove();
   
   Tulemus=createP("Tulemus: "+str(round_2((õige_vastus/ülesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ülesannete_loendur)+"<br>Õigeid lahendusi: "+str(õige_vastus));
   Tulemus.position(width/4-100,height/4-100);
