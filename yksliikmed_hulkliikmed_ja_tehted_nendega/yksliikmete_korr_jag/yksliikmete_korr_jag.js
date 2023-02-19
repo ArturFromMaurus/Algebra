@@ -10,6 +10,92 @@ var ylesannete_loendur=0;
 var oige_vastus=0;
 var lopetamise_tingimus=false;
 
+
+// ----------------------------------------- MATHQUILL KRAAM-----------------------------------------
+var MQ = MathQuill.getInterface(2);
+var answerSpan = document.getElementById('answer');
+answerSpan.style.backgroundColor="white";
+answerSpan.style.width="10px"
+var latexSpan = document.getElementById('lihtsam');
+var latexTEXT = document.getElementById('latex');
+var answerMathField = MQ.MathField(answerSpan, {
+                handlers: {
+                edit: function() {
+                    var enteredMath = answerMathField.latex();
+                    latexSpan.textContent = answerMathField.text()// Get entered math in LaTeX format   
+                    latexTEXT.textContent=answerMathField.latex();
+                }
+                }
+            });
+
+// ----------------------------------------- MATHQUILL KRAAM-----------------------------------------
+
+
+
+
+
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+var tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(255, 255, 255, 255)";
+tooltip.style.color = "black";
+tooltip.style.padding = "10px";
+tooltip.style.position = "absolute";
+tooltip.style.display = "none";
+tooltip.style.zIndex="1";
+tooltip.style.border="solid 2px black";
+tooltip.style.width="540px"
+document.body.appendChild(tooltip);
+
+var regularText = document.createElement("div");
+regularText.innerHTML = "Nimetajasse jäänud tähelised kordajad tuleb tõsta negatiivset astet kasutades nimetajast välja. Ehk tähelised kordajad ei tohi murru kujul olla. Arvulised kordajad aga võivad olla esitatud murru kujul. Kui arvuline kordaja on murru kujul, siis peab ta olema ka lõpuni taandatud.<br><br>Kui lõppvastuses on kordajal astmes arv 1, siis tuleb see jätta kirjutamata.<br><br>Kui antud tehe on võimatu (näiteks nulliga jagamise puhul), siis tuleb vastuse kasti sisestada - (sidekriipsu/miinuse sümbol).<br><br>Näiteks.";
+regularText.style.fontFamily="Computer Modern";
+regularText.style.fontSize="20px";
+tooltip.appendChild(regularText);
+
+KaTeX_EQ='12x^{15}y^{2} : 28x^{14}y^{19}=\\dfrac{3}{7}xy^{-17}'
+var katexEquation = document.createElement("div");
+tooltip.appendChild(katexEquation);
+
+
+// Info nuppu funktsionaalsus
+var infoNupp = document.createElement("button");
+infoNupp.innerHTML = "i";
+infoNupp.style.position = "absolute";
+infoNupp.style.margin="20px";
+infoNupp.style.padding="5px 12px";
+infoNupp.style.fontSize="20px";
+infoNupp.style.fontWeight="bold";
+infoNupp.style.fontFamily="Hoefler Text";
+infoNupp.style.fontStyle="italic";
+infoNupp.style.background="transparent";
+infoNupp.style.border="solid 2px black";
+infoNupp.style.borderRadius="50%";
+infoNupp.style.zIndex="1";
+document.body.appendChild(infoNupp);
+
+infoNupp.addEventListener("mouseenter", function() {
+  tooltip.style.left = (infoNupp.offsetLeft + infoNupp.offsetWidth) + "px";
+  tooltip.style.top = (infoNupp.offsetTop + infoNupp.offsetHeight) + "px";
+  infoNupp.style.background="darkgrey"
+  tooltip.style.display = "block";
+});
+
+infoNupp.addEventListener("mouseleave", function() {
+  tooltip.style.display = "none";
+  infoNupp.style.background="transparent"
+});
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+
+
+
+
+
+
+
 function windowResized() {
   resizeCanvas(windowWidth, 550, WEBGL);
 }
@@ -31,7 +117,10 @@ function setup() {
 
 function draw() {
   
-  background(230,245,255);
+  clear();
+  background(251,253,255);
+  katex.render(KaTeX_EQ, katexEquation);
+
   yl_text.position(width/asukoha_nr,height/asukoha_nr);
   MathQuill_vorrand.position(width/asukoha_nr+0,height/asukoha_nr+190);
   
@@ -433,8 +522,6 @@ function kontroll(){
               tulemus.html("Viga!");
               tulemus.style("color","red");
             }
-    
-
 }
 
 
@@ -448,6 +535,8 @@ function Lopp(){
   yl_text.remove();
   tulemus.remove();
   
+  infoNupp.remove();
+
   RESET_NUPP.remove();
   LOPETA_NUPP.remove();
   KONTROLL_NUPP.remove();
