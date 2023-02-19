@@ -10,6 +10,89 @@ var ylesannete_loendur=0;
 var oige_vastus=0;
 var l6petamise_tingimus=false;
 
+
+// ----------------------------------------- MATHQUILL KRAAM-----------------------------------------
+var MQ = MathQuill.getInterface(2);
+var answerSpan = document.getElementById('answer');
+answerSpan.style.backgroundColor="white";
+answerSpan.style.width="10px"
+var latexSpan = document.getElementById('lihtsam');
+var latexTEXT = document.getElementById('latex');
+var answerMathField = MQ.MathField(answerSpan, {
+                handlers: {
+                edit: function() {
+                    var enteredMath = answerMathField.latex();
+                    latexSpan.textContent = answerMathField.text()// Get entered math in LaTeX format   
+                    latexTEXT.textContent=answerMathField.latex();
+                }
+                }
+            });
+
+// ----------------------------------------- MATHQUILL KRAAM-----------------------------------------
+
+
+
+
+
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+var tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(255, 255, 255, 255)";
+tooltip.style.color = "black";
+tooltip.style.padding = "10px";
+tooltip.style.position = "absolute";
+tooltip.style.display = "none";
+tooltip.style.zIndex="1";
+tooltip.style.border="solid 2px black";
+tooltip.style.width="540px"
+document.body.appendChild(tooltip);
+
+var regularText = document.createElement("div");
+regularText.innerHTML = " Astmete sisestamiseks tuleb trükkida ^ sümbol (enamasti SHIFT+6 klahvi kombinatsioon klaviatuuril). Et astmest väljuda, vajutage parema noole klahvi.<br><br>Liikmete järjekord vastuse sisestamisel oluline ei ole.<br><br>Näiteks.";
+regularText.style.fontFamily="Computer Modern";
+regularText.style.fontSize="20px";
+tooltip.appendChild(regularText);
+
+KaTeX_EQ="\\left(2x-6 \\right)^{2}=2x \\cdot 2x + 2x \\cdot (-6)+(-6) \\cdot 2x + (-6) \\cdot (-6)= 4x^{2}-24x+36"
+var katexEquation = document.createElement("div");
+tooltip.appendChild(katexEquation);
+
+
+// Info nuppu funktsionaalsus
+var infoNupp = document.createElement("button");
+infoNupp.innerHTML = "i";
+infoNupp.style.position = "absolute";
+infoNupp.style.margin="20px";
+infoNupp.style.padding="5px 12px";
+infoNupp.style.fontSize="20px";
+infoNupp.style.fontWeight="bold";
+infoNupp.style.fontFamily="Hoefler Text";
+infoNupp.style.fontStyle="italic";
+infoNupp.style.background="transparent";
+infoNupp.style.border="solid 2px black";
+infoNupp.style.borderRadius="50%";
+infoNupp.style.zIndex="1";
+document.body.appendChild(infoNupp);
+
+infoNupp.addEventListener("mouseenter", function() {
+  tooltip.style.left = (infoNupp.offsetLeft + infoNupp.offsetWidth) + "px";
+  tooltip.style.top = (infoNupp.offsetTop + infoNupp.offsetHeight) + "px";
+  infoNupp.style.background="darkgrey"
+  tooltip.style.display = "block";
+});
+
+infoNupp.addEventListener("mouseleave", function() {
+  tooltip.style.display = "none";
+  infoNupp.style.background="transparent"
+});
+
+// ----------------------------------------- HTML ToolTip -------------------------------------------
+
+
+
+
+
 function windowResized() {
   resizeCanvas(windowWidth, 550, WEBGL);
 }
@@ -31,7 +114,10 @@ function setup() {
 
 function draw() {
   
-  background(230,245,255);
+  clear();
+  background(251,253,255);
+  katex.render(KaTeX_EQ, katexEquation);
+
   yl_text.position(width/asukoha_nr,height/asukoha_nr);
   MathQuill_v6rrand.position(width/asukoha_nr+0,height/asukoha_nr+190);
   
@@ -758,6 +844,8 @@ function L6pp(){
   KONTROLL_NUPP.remove();
   MathQuill_v6rrand.remove();
   
+  infoNupp.remove();
+
   Tulemus=createP("Tulemus: "+str(round_2((oige_vastus/ylesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ylesannete_loendur)+"<br>Õigeid lahendusi: "+str(oige_vastus));
   Tulemus.position(width/4-100,height/4-100);
   Tulemus.style("font-size","28px");
