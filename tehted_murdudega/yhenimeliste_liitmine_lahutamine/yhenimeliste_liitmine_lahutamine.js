@@ -19,7 +19,7 @@ tooltip.style.width="540px"
 document.body.appendChild(tooltip);
 
 var regularText = document.createElement("div");
-regularText.innerHTML = "Et murde liita või lahutada, tuleb viia nimetajad ühesugusteks. Ühenimeliste murdude korral on nimetajad juba samasugused, seega saab lugejad kokku liita ning nimetaja jääb samaks.<br>Kui lugeja osutub negatiivseks, siis võib miinusmärki sisestada lugeja või nimetaja sisendkasti.<br><br>Näiteks.";
+regularText.innerHTML = "Et murde liita või lahutada, tuleb teisendada nimetajad ühesugusteks. Ühenimeliste murdude korral on nimetajad juba samasugused, seega saab lugejad kokku liita ning nimetaja jääb samaks.<br>Kui lugeja osutub negatiivseks, siis võib miinusmärki sisestada lugeja või nimetaja sisendkasti.<br><br>Näiteks.";
 regularText.style.fontFamily="Computer Modern";
 regularText.style.fontSize="20px";
 tooltip.appendChild(regularText);
