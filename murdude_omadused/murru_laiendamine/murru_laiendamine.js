@@ -19,7 +19,7 @@ tooltip.style.width="540px"
 document.body.appendChild(tooltip);
 
 var regularText = document.createElement("div");
-regularText.innerHTML = "Murru laiendamine tähendab seda, et murru lugejat ning nimetajat korrutatakse läbi ühe kindla arvuga. Sobiva laiendaja leidmiseks jagage ülesandes antud lugeja/nimetaja murrus oleva lugeja/nimetajaga. Saadud arv ongi sobiv murru laiendaja.<br><br>Näiteks. Laienda murd nii, et lugeja oleks 21.<br>Leiame sobiva laiendaja. 21 : 3 = 7.";
+regularText.innerHTML = "Murru laiendamine tähendab, et murru lugeja ning nimetaja korrutatakse läbi ühe kindla arvuga. Sobiva laiendaja leidmiseks jagage ülesandes antud lugeja/nimetaja murrus oleva lugeja/nimetajaga. Saadud arv ongi sobiv murru laiendaja.<br><br>Näiteks. Laienda murd nii, et lugeja oleks 21.<br>Leiame sobiva laiendaja. 21 : 3 = 7.";
 regularText.style.fontFamily="Computer Modern";
 regularText.style.fontSize="20px";
 tooltip.appendChild(regularText);
