@@ -21,7 +21,7 @@ tooltip.style.width="540px"
 document.body.appendChild(tooltip);
 
 var regularText = document.createElement("div");
-regularText.innerHTML = "Vastust võib sisestada nii taandatud kui ka taandamata kujul.<br><br>Murdude korrutamisel korrutatakse murdude lugejad omavahel ning nimetajad omavahel.<br><br>Näiteks.";
+regularText.innerHTML = "Vastust võib sisestada nii taandatud kui ka taandamata kujul.<br><br>Murdude korrutamisel korrutatakse omavahel murdude lugejad ja omavahel murdude nimetajad.<br><br>Näiteks.";
 regularText.style.fontFamily="Computer Modern";
 regularText.style.fontSize="20px";
 tooltip.appendChild(regularText);
