@@ -19,7 +19,7 @@ tooltip.style.width="540px"
 document.body.appendChild(tooltip);
 
 var regularText = document.createElement("div");
-regularText.innerHTML = "Vastust võib sisestada nii taandatud kui ka taandamata kujul.<br><br>Erinimeliste murdude liitmiseks ja lahutamiseks tuleb teisendada mõlema murru nimetajad ühesugusteks. Kõige kindlam viis selle jaoks, kuid mitte ainuke, on kasutada 'ristlaiendus' meetodit. Selle jaoks tuleb laiendada esimest murdu teise murru nimetajaga ning teist murdu esimese murru nimetajaga.<br><br>Näiteks.";
+regularText.innerHTML = "Vastuse võib sisestada nii taandatud kui ka taandamata kujul.<br><br>Erinimeliste murdude liitmiseks ja lahutamiseks tuleb mõlema murru nimetajad teisendada ühesuguseks. Kõige kindlam, kuid mitte ainuke viis on ristlaienduse meetod. Selle jaoks tuleb laiendada esimest murdu teise murru nimetajaga ning teist murdu esimese murru nimetajaga.<br><br>Näiteks.";
 regularText.style.fontFamily="Computer Modern";
 regularText.style.fontSize="20px";
 tooltip.appendChild(regularText);
