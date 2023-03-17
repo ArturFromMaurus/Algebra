@@ -33,15 +33,13 @@ var answerMathField = MQ.MathField(answerSpan, {
 // ----------------------------------------- MATHQUILL KRAAM-----------------------------------------
 
 
-
-
-
-
+window.onload = function() {
 // ----------------------------------------- HTML ToolTip -------------------------------------------
 
-var tooltip = document.createElement("div");
-tooltip.style.backgroundColor = "rgba(255, 255, 255, 255)";
-tooltip.style.color = "black";
+tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(9,9,96,0.95)"
+tooltip.style.color = "white";
+tooltip.style.borderRadius="25px";
 tooltip.style.padding = "10px";
 tooltip.style.position = "absolute";
 tooltip.style.display = "none";
@@ -50,23 +48,24 @@ tooltip.style.border="solid 2px black";
 tooltip.style.width="540px"
 document.body.appendChild(tooltip);
 
-var regularText = document.createElement("div");
+regularText = document.createElement("div");
 regularText.innerHTML = "Kui lõppvastuses on astmes arv 1, siis tuleb see välja kirjutada (mis sest, et tavaliselt seda välja ei kirjutata).<br><br>Kui kordaja võrdub 1-ga (näiteks, kui tähelise kordaja aste on 0), siis tuleb see kirjutamata jätta. Kui aga kogu vastus 1-ga võrdub, siis tuleb see loomulikult ikkagi kirja panna.<br><br>Negatiivse astme puhul ei tohi kordajat nimetajasse üle viia.<br><br>Näiteks.";
 regularText.style.fontFamily="Computer Modern";
 regularText.style.fontSize="20px";
 tooltip.appendChild(regularText);
-
 KaTeX_EQ='\\left(a^{0} \\cdot b^{1} \\cdot c^{-5} \\right)^{1}=b^{1}c^{-5}'
-var katexEquation = document.createElement("div");
+ katexEquation = document.createElement("div");
 tooltip.appendChild(katexEquation);
 
 
 // Info nuppu funktsionaalsus
-var infoNupp = document.createElement("button");
+ infoNupp = document.createElement("button");
 infoNupp.innerHTML = "i";
 infoNupp.style.position = "absolute";
 infoNupp.style.margin="20px";
 infoNupp.style.padding="5px 12px";
+infoNupp.style.top="12px";
+infoNupp.style.left="5px";
 infoNupp.style.fontSize="20px";
 infoNupp.style.fontWeight="bold";
 infoNupp.style.fontFamily="Hoefler Text";
@@ -90,13 +89,7 @@ infoNupp.addEventListener("mouseleave", function() {
 });
 
 // ----------------------------------------- HTML ToolTip -------------------------------------------
-
-
-
-
-
-
-
+};
 
 
 
@@ -178,6 +171,9 @@ function Reset(){
   Ylesanne();
   tulemus.html("");
 
+  answerMathField.focus();
+  answerMathField.latex("");
+  
   KONTROLL_NUPP=createButton("Kontroll");
   KONTROLL_NUPP.style('padding','10px 20px');
   KONTROLL_NUPP.style('background-color','MidNightBlue');
