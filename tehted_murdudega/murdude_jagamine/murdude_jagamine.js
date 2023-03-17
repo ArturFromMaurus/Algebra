@@ -4,12 +4,13 @@ var ylesannete_loendur=0;
 var oige_vastus=0;
 var lopetamise_tingimus=false;
 
-
+window.onload = function() {
 // ----------------------------------------- HTML ToolTip -------------------------------------------
 
-var tooltip = document.createElement("div");
-tooltip.style.backgroundColor = "rgba(255, 255, 255, 255)";
-tooltip.style.color = "black";
+ tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(9,9,96,0.95)"
+tooltip.style.color = "white";
+tooltip.style.borderRadius="25px";
 tooltip.style.padding = "10px";
 tooltip.style.position = "absolute";
 tooltip.style.display = "none";
@@ -18,19 +19,19 @@ tooltip.style.border="solid 2px black";
 tooltip.style.width="540px"
 document.body.appendChild(tooltip);
 
-var regularText = document.createElement("div");
+regularText = document.createElement("div");
 regularText.innerHTML = "Vastust võib sisestada nii taandatud kui ka taandamata kujul.<br><br>Näiteks.";
 regularText.style.fontFamily="Computer Modern";
 regularText.style.fontSize="20px";
 tooltip.appendChild(regularText);
 
 KaTeX_EQ="\\dfrac{4}{9} : \\dfrac{14}{30}=\\dfrac{4}{9} \\cdot \\dfrac{30}{14}=\\dfrac{4 \\cdot 30}{ 9 \\cdot 14}=\\dfrac{20}{21}."
-var katexEquation = document.createElement("div");
+ katexEquation = document.createElement("div");
 tooltip.appendChild(katexEquation);
 
 
 // Info nuppu funktsionaalsus
-var infoNupp = document.createElement("button");
+ infoNupp = document.createElement("button");
 infoNupp.innerHTML = "i";
 infoNupp.style.position = "absolute";
 infoNupp.style.margin="20px";
@@ -58,7 +59,7 @@ infoNupp.addEventListener("mouseleave", function() {
 });
 
 // ----------------------------------------- HTML ToolTip -------------------------------------------
-
+};
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
