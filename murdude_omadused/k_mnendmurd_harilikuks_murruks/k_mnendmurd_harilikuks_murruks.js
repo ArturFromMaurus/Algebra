@@ -1,15 +1,19 @@
 
 var asukoha_nr=10;
-var ülesannete_loendur=0;
-var õige_vastus=0;
-var lõpetamise_tingimus=false;
+var ylesannete_loendur=0;
+var oige_vastus=0;
+var lopetamise_tingimus=false;
 
 
+
+
+window.onload = function() {
 // ----------------------------------------- HTML ToolTip -------------------------------------------
 
-var tooltip = document.createElement("div");
-tooltip.style.backgroundColor = "rgba(255, 255, 255, 255)";
-tooltip.style.color = "black";
+ tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(9,9,96,0.95)"
+tooltip.style.color = "white";
+tooltip.style.borderRadius="25px";
 tooltip.style.padding = "10px";
 tooltip.style.position = "absolute";
 tooltip.style.display = "none";
@@ -18,19 +22,19 @@ tooltip.style.border="solid 2px black";
 tooltip.style.width="540px"
 document.body.appendChild(tooltip);
 
-var regularText = document.createElement("div");
+ regularText = document.createElement("div");
 regularText.innerHTML = "Sisesta lugejasse ning nimetajasse sobivad täisarvud.<br>Õigeks loetakse nii taandatud kui ka taandamata kuju.<br><br>";
 regularText.style.fontFamily="Computer Modern";
 regularText.style.fontSize="20px";
 tooltip.appendChild(regularText);
 
 KaTeX_EQ="\\text{Näiteks: } 5.793= \\dfrac{5793}{1000}."
-var katexEquation = document.createElement("div");
+ katexEquation = document.createElement("div");
 tooltip.appendChild(katexEquation);
 
 
 // Info nuppu funktsionaalsus
-var infoNupp = document.createElement("button");
+ infoNupp = document.createElement("button");
 infoNupp.innerHTML = "i";
 infoNupp.style.position = "absolute";
 infoNupp.style.margin="20px";
@@ -58,6 +62,9 @@ infoNupp.addEventListener("mouseleave", function() {
 });
 
 // ----------------------------------------- HTML ToolTip -------------------------------------------
+}
+
+
 
 
 
@@ -82,7 +89,7 @@ function draw() {
   yl_text.position(width/asukoha_nr,height/asukoha_nr);
   lugeja.position(width/asukoha_nr+78,height/asukoha_nr+41);
   nimetaja.position(width/asukoha_nr+78,height/asukoha_nr+76);
-  tex_võrrand.position(width/asukoha_nr+71,height/asukoha_nr+60)
+  tex_vorrand.position(width/asukoha_nr+71,height/asukoha_nr+60)
   tulemus.position(width/asukoha_nr+155,height/asukoha_nr+65);
   
   KONTROLL_NUPP.position(width/asukoha_nr-110,height/asukoha_nr+150);
@@ -92,10 +99,10 @@ function draw() {
   RESET_NUPP.mousePressed(Reset);
   
   
-  LÕPETA_NUPP.mousePressed(Lõpp);
-  LÕPETA_NUPP.position(width/asukoha_nr+20,height/asukoha_nr+220);
+  L6PETA_NUPP.mousePressed(Lopp);
+  L6PETA_NUPP.position(width/asukoha_nr+20,height/asukoha_nr+220);
   
-  if(lõpetamise_tingimus==true){
+  if(lopetamise_tingimus==true){
     
     push();
     fill(22, 56, 50);
@@ -130,13 +137,13 @@ function draw() {
 
 function Reset(){
   
-  if(ülesannete_loendur>0){
+  if(ylesannete_loendur>0){
     
     lugeja.remove();
     nimetaja.remove();
     KONTROLL_NUPP.remove();
     RESET_NUPP.remove();
-    LÕPETA_NUPP.remove();
+    L6PETA_NUPP.remove();
   }
   
   Ylesanne();
@@ -168,17 +175,17 @@ function Reset(){
   RESET_NUPP.style('margin-left','20px');
   RESET_NUPP.position(width/asukoha_nr+130,height/asukoha_nr+200);
   
-  LÕPETA_NUPP=createButton("Lõpeta test");
-  LÕPETA_NUPP.style('padding','10px 20px');
-  LÕPETA_NUPP.style('background-color','LightSteelBlue');
-  LÕPETA_NUPP.style('color','black');
-  LÕPETA_NUPP.style('font-weight','bold');
-  LÕPETA_NUPP.style('border-radius','30px');
-  LÕPETA_NUPP.style('margin-top','30px');
-  LÕPETA_NUPP.style('margin-left','80px');
-  LÕPETA_NUPP.position(width/asukoha_nr+200,height/asukoha_nr+200);
+  L6PETA_NUPP=createButton("Lõpeta test");
+  L6PETA_NUPP.style('padding','10px 20px');
+  L6PETA_NUPP.style('background-color','LightSteelBlue');
+  L6PETA_NUPP.style('color','black');
+  L6PETA_NUPP.style('font-weight','bold');
+  L6PETA_NUPP.style('border-radius','30px');
+  L6PETA_NUPP.style('margin-top','30px');
+  L6PETA_NUPP.style('margin-left','80px');
+  L6PETA_NUPP.position(width/asukoha_nr+200,height/asukoha_nr+200);
   
-  ülesannete_loendur=ülesannete_loendur+1;
+  ylesannete_loendur=ylesannete_loendur+1;
 }
 
 
@@ -190,11 +197,11 @@ function Ylesanne(){
 
 
 function write_texts(){
-  tex_võrrand=createDiv("");
-  tex_võrrand.position(width/asukoha_nr+63,height/asukoha_nr+60)
+  tex_vorrand=createDiv("");
+  tex_vorrand.position(width/asukoha_nr+63,height/asukoha_nr+60)
   
   tex_string="\\dfrac{ \\hspace{10mm}   }{ \\hspace{10mm} }";
-  katex.render( tex_string, tex_võrrand.elt);
+  katex.render( tex_string, tex_vorrand.elt);
   
   yl_text=createDiv("");
   yl_text.style("font-size","20px");
@@ -214,7 +221,7 @@ function kontroll(){
            if ( (lugeja.value()/nimetaja.value()) == kymnendmurd){
               tulemus.html("Õige!");
               tulemus.style("color","green");
-              õige_vastus=õige_vastus+1;
+              oige_vastus=oige_vastus+1;
             } else {
               tulemus.html("Vale!");
               tulemus.style("color","red");
@@ -233,32 +240,33 @@ function kontroll(){
 }
 
 
-function Lõpp(){
+function Lopp(){
+  
+   tooltip.remove();
+  infoNupp.remove();
   
   KONTROLL_NUPP.attribute("disabled","");
   RESET_NUPP.attribute("disabled","");
-  LÕPETA_NUPP.attribute("disabled","");
+  L6PETA_NUPP.attribute("disabled","");
   
-  infoNupp.remove();
-
-  tex_võrrand.remove();
+  tex_vorrand.remove();
   lugeja.remove();
   nimetaja.remove();
   yl_text.remove();
   tulemus.remove();
   
   RESET_NUPP.remove();
-  LÕPETA_NUPP.remove();
+  L6PETA_NUPP.remove();
   KONTROLL_NUPP.remove();
   
   
-  Tulemus=createP("Tulemus: "+str(round_2((õige_vastus/ülesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ülesannete_loendur)+"<br>Õigeid lahendusi: "+str(õige_vastus));
+  Tulemus=createP("Tulemus: "+str(round_2((oige_vastus/ylesannete_loendur)*100))+"%<br>Kogu ülesannete arv: "+str(ylesannete_loendur)+"<br>Õigeid lahendusi: "+str(oige_vastus));
   Tulemus.position(width/4-100,height/4-100);
   Tulemus.style("font-size","28px");
   Tulemus.style("color",color(255,255,255));
   Tulemus.style("line-height","140%");
   
-  lõpetamise_tingimus=true;
+  lopetamise_tingimus=true;
 }
 
 
