@@ -1,4 +1,3 @@
-
 var step=5;
 let X=0;
 let Y=0;
@@ -26,35 +25,14 @@ var  asteZ3=0
 
 
 
-// ----------------------------------------- MATHQUILL KRAAM-----------------------------------------
-var MQ = MathQuill.getInterface(2);
-var answerSpan = document.getElementById('answer');
-answerSpan.style.backgroundColor="white";
-answerSpan.style.width="10px"
-var latexSpan = document.getElementById('lihtsam');
-var latexTEXT = document.getElementById('latex');
-var answerMathField = MQ.MathField(answerSpan, {
-                handlers: {
-                edit: function() {
-                    var enteredMath = answerMathField.latex();
-                    latexSpan.textContent = answerMathField.text()// Get entered math in LaTeX format   
-                    latexTEXT.textContent=answerMathField.latex();
-                }
-                }
-            });
 
-// ----------------------------------------- MATHQUILL KRAAM-----------------------------------------
-
-
-
-
-
-
+window.onload = function() {
 // ----------------------------------------- HTML ToolTip -------------------------------------------
 
-var tooltip = document.createElement("div");
-tooltip.style.backgroundColor = "rgba(255, 255, 255, 255)";
-tooltip.style.color = "black";
+ tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(9,9,96,0.95)"
+tooltip.style.color = "white";
+tooltip.style.borderRadius="25px";
 tooltip.style.padding = "10px";
 tooltip.style.position = "absolute";
 tooltip.style.display = "none";
@@ -63,19 +41,20 @@ tooltip.style.border="solid 2px black";
 tooltip.style.width="540px"
 document.body.appendChild(tooltip);
 
-var regularText = document.createElement("div");
+regularText = document.createElement("div");
 regularText.innerHTML = " Arvkordajad tuleb sisestada taandatud murru kujul, kuid tähelised tegurid, mis murru kujul esinevad, on soovituslik tõsta nimetajast kõik lugejasse ning viia normaalkujule (tähestikulisse järjekorda). Seega tuleb kasuks negatiivsete astmetega toimetamine.<br><br>Näiteks.";
 regularText.style.fontFamily="Computer Modern";
 regularText.style.fontSize="20px";
 tooltip.appendChild(regularText);
 
+
 KaTeX_EQ="126y: \\left(  49x^{-15}y^{20} + 126x^{14} \\right)=\\dfrac{126y}{49x^{-15}y^{20}}+ \\dfrac{126y}{126x^{14}}=\\dfrac{18}{7}x^{15}y^{-19}+x^{-14}y"
-var katexEquation = document.createElement("div");
+ katexEquation = document.createElement("div");
 tooltip.appendChild(katexEquation);
 
 
 // Info nuppu funktsionaalsus
-var infoNupp = document.createElement("button");
+ infoNupp = document.createElement("button");
 infoNupp.innerHTML = "i";
 infoNupp.style.position = "absolute";
 infoNupp.style.margin="20px";
@@ -103,6 +82,31 @@ infoNupp.addEventListener("mouseleave", function() {
 });
 
 // ----------------------------------------- HTML ToolTip -------------------------------------------
+};
+
+
+
+
+
+
+// ----------------------------------------- MATHQUILL KRAAM-----------------------------------------
+var MQ = MathQuill.getInterface(2);
+var answerSpan = document.getElementById('answer');
+answerSpan.style.backgroundColor="white";
+answerSpan.style.width="10px"
+var latexSpan = document.getElementById('lihtsam');
+var latexTEXT = document.getElementById('latex');
+var answerMathField = MQ.MathField(answerSpan, {
+                handlers: {
+                edit: function() {
+                    var enteredMath = answerMathField.latex();
+                    latexSpan.textContent = answerMathField.text()// Get entered math in LaTeX format   
+                    latexTEXT.textContent=answerMathField.latex();
+                }
+                }
+            });
+
+// ----------------------------------------- MATHQUILL KRAAM-----------------------------------------
 
 
 
@@ -184,7 +188,11 @@ function Reset(){
   
   Ylesanne();
   tulemus.html("");
-
+   answerMathField = MQ.MathField(answerSpan);
+  answerMathField.focus();
+  answerMathField.latex("");
+  
+  
   KONTROLL_NUPP=createButton("Kontroll");
   KONTROLL_NUPP.style('padding','10px 20px');
   KONTROLL_NUPP.style('background-color','MidNightBlue');
