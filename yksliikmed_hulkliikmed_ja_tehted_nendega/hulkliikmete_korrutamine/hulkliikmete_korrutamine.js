@@ -31,15 +31,13 @@ var answerMathField = MQ.MathField(answerSpan, {
 // ----------------------------------------- MATHQUILL KRAAM-----------------------------------------
 
 
-
-
-
-
 // ----------------------------------------- HTML ToolTip -------------------------------------------
-
-var tooltip = document.createElement("div");
-tooltip.style.backgroundColor = "rgba(255, 255, 255, 255)";
-tooltip.style.color = "black";
+window.onload = function() {
+  
+tooltip = document.createElement("div");
+tooltip.style.backgroundColor = "rgba(9,9,96,0.95)"
+tooltip.style.color = "white";
+tooltip.style.borderRadius="25px";
 tooltip.style.padding = "10px";
 tooltip.style.position = "absolute";
 tooltip.style.display = "none";
@@ -48,23 +46,25 @@ tooltip.style.border="solid 2px black";
 tooltip.style.width="540px"
 document.body.appendChild(tooltip);
 
-var regularText = document.createElement("div");
+regularText = document.createElement("div");
 regularText.innerHTML = " Astmete sisestamiseks tuleb trükkida ^ sümbol (enamasti SHIFT+6 klahvi kombinatsioon klaviatuuril). Et astmest väljuda, vajutage parema noole klahvi.<br><br>Liikmete järjekord vastuse sisestamisel oluline ei ole.<br><br>Näiteks.";
 regularText.style.fontFamily="Computer Modern";
 regularText.style.fontSize="20px";
 tooltip.appendChild(regularText);
 
 KaTeX_EQ="\\left(2x-6 \\right)^{2}=2x \\cdot 2x + 2x \\cdot (-6)+(-6) \\cdot 2x + (-6) \\cdot (-6)= 4x^{2}-24x+36"
-var katexEquation = document.createElement("div");
+katexEquation = document.createElement("div");
 tooltip.appendChild(katexEquation);
 
 
 // Info nuppu funktsionaalsus
-var infoNupp = document.createElement("button");
+infoNupp = document.createElement("button");
 infoNupp.innerHTML = "i";
 infoNupp.style.position = "absolute";
 infoNupp.style.margin="20px";
 infoNupp.style.padding="5px 12px";
+infoNupp.style.left = "5px";
+infoNupp.style.top = "12px";
 infoNupp.style.fontSize="20px";
 infoNupp.style.fontWeight="bold";
 infoNupp.style.fontFamily="Hoefler Text";
@@ -87,9 +87,9 @@ infoNupp.addEventListener("mouseleave", function() {
   infoNupp.style.background="transparent"
 });
 
+  
+}
 // ----------------------------------------- HTML ToolTip -------------------------------------------
-
-
 
 
 
@@ -170,7 +170,11 @@ function Reset(){
   
   Ylesanne();
   tulemus.html("");
-
+  answerMathField.focus();
+  answerMathField.latex("");
+  
+  
+  
   KONTROLL_NUPP=createButton("Kontroll");
   KONTROLL_NUPP.style('padding','10px 20px');
   KONTROLL_NUPP.style('background-color','MidNightBlue');
